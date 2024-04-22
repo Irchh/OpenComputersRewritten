@@ -113,24 +113,4 @@ public class ScreenModel extends BaseModel {
 
         super.emitItemQuads(stack, randomSupplier, context);
     }
-
-    /*
-    @Override
-    public void emitBlockQuads(BlockRenderView blockView, BlockState blockState, BlockPos pos, Supplier<Random> supplier, RenderContext renderContext) {
-        QuadEmitter emitter = renderContext.getEmitter();
-        for(Direction direction : Direction.values()) {
-            // UP and DOWN share the Y axis
-            int spriteIdx = direction.getId();
-            // Add a new face to the mesh
-            emitter.square(direction, 0.0f, 0.0f, 1.0f, 1.0f, 0.0f);
-            // Set the sprite of the face, must be called after .square()
-            // We haven't specified any UV coordinates, so we want to use the whole texture. BAKE_LOCK_UV does exactly that.
-            emitter.spriteBake(sprites[spriteIdx], MutableQuadView.BAKE_LOCK_UV);
-            // Enable texture usage
-            emitter.color(-1, -1, -1, -1);
-            // Add the quad to the mesh
-            emitter.emit();
-        }
-        super.emitBlockQuads(blockView, blockState, pos, supplier, renderContext);
-    }*/
 }
