@@ -1,15 +1,29 @@
 package no.pepega.oc.common.block;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockEntityProvider;
+import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.client.item.TooltipType;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.inventory.Inventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
+import net.minecraft.screen.NamedScreenHandlerFactory;
+import net.minecraft.screen.ScreenHandler;
 import net.minecraft.state.StateManager;
 import net.minecraft.text.Text;
+import net.minecraft.util.ActionResult;
 import net.minecraft.util.DyeColor;
+import net.minecraft.util.Hand;
+import net.minecraft.util.ItemScatterer;
+import net.minecraft.util.hit.BlockHitResult;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
+import net.minecraft.world.World;
+import no.pepega.oc.common.block.blockentity.CaseEntity;
 import no.pepega.oc.common.block.util.*;
 import no.pepega.oc.util.Color;
 import no.pepega.oc.util.Tooltip;
@@ -17,7 +31,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class Case extends ExtendedBlock implements Tier, Colored {
+public class Case extends ExtendedBlock implements Tier, Colored, BlockEntityProvider {
     private final int tier;
 
     public Case(Settings settings, int tier) {
@@ -31,6 +45,12 @@ public class Case extends ExtendedBlock implements Tier, Colored {
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(Rotatable.Facing, PropertyRunning.Running);
         super.appendProperties(builder);
+    }
+
+    @Nullable
+    @Override
+    public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
+        return new CaseEntity(pos, state, tier);
     }
 
     @Override
@@ -52,9 +72,6 @@ public class Case extends ExtendedBlock implements Tier, Colored {
         return super.getPlacementState(ctx).with(Rotatable.Facing, ctx.getHorizontalPlayerFacing().getOpposite());
     }
 
-    // ----------------------------------------------------------------------- //
-
-
     @Override
     protected void tooltipBody(ItemStack stack, Item.TooltipContext context, List<Text> tooltip, TooltipType options) {
         for (String curr: Tooltip.get(getClass().getSimpleName().toLowerCase(), slots())) {
@@ -75,4 +92,48 @@ public class Case extends ExtendedBlock implements Tier, Colored {
     public DyeColor blockTint() {
         return Color.byTier.get(tier);
     }
+
+    // For interacting with the inventory
+    @Override
+    @Nullable
+    protected NamedScreenHandlerFactory createScreenHandlerFactory(BlockState state, World world, BlockPos pos) {
+        BlockEntity blockEntity = world.getBlockEntity(pos);
+        return blockEntity instanceof NamedScreenHandlerFactory ? (NamedScreenHandlerFactory)((Object)blockEntity) : null;
+    }
+
+    @Override
+    protected ActionResult onUse(BlockState state, World world, BlockPos blockPos, PlayerEntity player, BlockHitResult hit) {
+        if (!world.isClient) {
+            //This will call the createScreenHandlerFactory method from above, which will return our blockEntity casted to
+            //a namedScreenHandlerFactory.
+            NamedScreenHandlerFactory screenHandlerFactory = state.createScreenHandlerFactory(world, blockPos);
+
+            if (screenHandlerFactory != null) {
+                //With this call the server will request the client to open the appropriate Screenhandler
+                player.openHandledScreen(screenHandlerFactory);
+            }
+        }
+        return ActionResult.SUCCESS;
+    }
+
+    @Override
+    protected void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
+        if (state.getBlock() != newState.getBlock()) {
+            BlockEntity blockEntity = world.getBlockEntity(pos);
+            if (blockEntity instanceof CaseEntity caseEntity) {
+                ItemScatterer.spawn(world, pos, caseEntity);
+                // update comparators
+                world.updateComparators(pos,this);
+            }
+            super.onStateReplaced(state, world, pos, newState, moved);
+        }
+    }
+
+    @Override
+    public boolean hasComparatorOutput(BlockState state) {
+        // TODO: Implement maybe
+        return super.hasComparatorOutput(state);
+    }
+
+
 }
