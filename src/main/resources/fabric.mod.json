@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "id": "opencomputers-rewrite",
+  "version": "${version}",
+
+  "name": "OpenComputers Rewritten",
+  "description": "A rewrite of OpenComputers for 1.20.5+",
+  "authors": ["Irjan Olsen"],
+  "contact": {"email": "irjan.olsen@gmail.com"},
+
+  "license": "MIT",
+  "icon": "assets/opencomputers-rewrite/icon.png",
+
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "no.pepega.oc.OpenComputersRewritten"
+    ],
+    "client": [
+      "no.pepega.oc.OpenComputersRewrittenClient"
+    ],
+    "server": [
+      "no.pepega.oc.OpenComputersRewrittenServer"
+    ]
+  },
+
+
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+        "fabric": "*",
+    "minecraft": "${minecraft_version_fabric}"
+  }
+}
