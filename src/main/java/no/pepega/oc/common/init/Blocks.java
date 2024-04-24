@@ -1,9 +1,7 @@
 package no.pepega.oc.common.init;
 
-import net.fabricmc.fabric.api.blockview.v2.FabricBlockView;
 import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
 import net.minecraft.block.Block;
-import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
@@ -12,6 +10,7 @@ import no.pepega.oc.OpenComputersRewritten;
 import no.pepega.oc.common.block.Case;
 import no.pepega.oc.common.block.util.ExtendedBlock;
 import no.pepega.oc.common.block.Screen;
+import no.pepega.oc.common.block.util.ExtendedBlockItem;
 import no.pepega.oc.util.Color;
 
 public class Blocks {
@@ -50,6 +49,6 @@ public class Blocks {
             ColorProviderRegistry.ITEM.register((stack, tintIndex) -> Color.rgbValues.get(computerCase.blockTint()), computerCase);
         }
         Registry.register(Registries.BLOCK, new Identifier(OpenComputersRewritten.identifier, block.registryName()), block);
-        Registry.register(Registries.ITEM, new Identifier(OpenComputersRewritten.identifier, block.registryName()), new BlockItem(block, new Item.Settings()));
+        Registry.register(Registries.ITEM, new Identifier(OpenComputersRewritten.identifier, block.registryName()), new ExtendedBlockItem(block, new Item.Settings()));
     }
 }

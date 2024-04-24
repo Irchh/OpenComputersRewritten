@@ -3,7 +3,11 @@ package no.pepega.oc.common.item.util;
 import net.minecraft.client.item.TooltipType;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
+import no.pepega.oc.api.component.ComponentItem;
+import no.pepega.oc.common.Tier;
+import no.pepega.oc.util.Color;
 import no.pepega.oc.util.Tooltip;
 
 import java.util.ArrayList;
@@ -29,6 +33,22 @@ public class ExtendedItem extends Item {
 
     public List<Object> tooltipData() {
         return new ArrayList<>();
+    }
+
+    @Override
+    public Text getName() {
+        if (this instanceof ComponentItem item && item.tier() > Tier.One && item.tier() <= Tier.Four) {
+            return super.getName().copy().withColor(Color.rgbValues.get(Color.byTier.get(item.tier())));
+        }
+        return super.getName();
+    }
+
+    @Override
+    public Text getName(ItemStack stack) {
+        if (this instanceof ComponentItem item && item.tier() > Tier.One && item.tier() <= Tier.Four) {
+            return super.getName(stack).copy().withColor(Color.rgbValues.get(Color.byTier.get(item.tier())));
+        }
+        return super.getName(stack);
     }
 
     @Override

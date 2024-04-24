@@ -12,6 +12,8 @@ import net.minecraft.screen.ScreenHandler;
 import net.minecraft.text.Text;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
+import no.pepega.oc.common.Tier;
+import no.pepega.oc.common.block.Case;
 import no.pepega.oc.common.block.inventory.EasyInventory;
 import no.pepega.oc.common.init.BlockEntities;
 import no.pepega.oc.common.ui.CaseScreenHandler;
@@ -22,13 +24,21 @@ public class CaseEntity extends ExtendedBlockEntity implements NamedScreenHandle
     private int tier;
 
     public CaseEntity(BlockPos pos, BlockState state) {
-        this(pos, state, 0);
+        this(pos, state, Tier.Three);
     }
 
     public CaseEntity(BlockPos pos, BlockState state, int tier) {
-        super(BlockEntities.SCREEN, pos, state);
-        this.tier = tier;
-        items = DefaultedList.ofSize(9, ItemStack.EMPTY);
+        super(BlockEntities.CASE, pos, state);
+        if (state.getBlock() instanceof Case c) {
+            this.tier = c.tier();
+        } else {
+            this.tier = tier;
+        }
+        items = switch (tier) {
+            case Tier.One -> DefaultedList.ofSize(7, ItemStack.EMPTY);
+            case Tier.Two -> DefaultedList.ofSize(8, ItemStack.EMPTY);
+            default -> DefaultedList.ofSize(10, ItemStack.EMPTY);
+        };
     }
 
     @Override
@@ -59,6 +69,6 @@ public class CaseEntity extends ExtendedBlockEntity implements NamedScreenHandle
     @Nullable
     @Override
     public ScreenHandler createMenu(int syncId, PlayerInventory playerInventory, PlayerEntity player) {
-        return new CaseScreenHandler(syncId, playerInventory, this);
+        return new CaseScreenHandler(syncId, playerInventory, this, tier);
     }
 }
