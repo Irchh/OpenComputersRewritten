@@ -1,11 +1,11 @@
 package no.pepega.oc.common.block.inventory;
 
 import net.minecraft.inventory.Inventory;
+import no.pepega.oc.api.component.ComponentType;
 import no.pepega.oc.common.InventorySlots;
-import no.pepega.oc.common.SlotType;
 
 public class StaticComponentSlot extends ComponentSlot {
-    private final String slot;
+    private final ComponentType slot;
     private final int tier;
 
     public StaticComponentSlot(Inventory inventory, int index, int x, int y, InventorySlots.InventorySlot slotType) {
@@ -15,7 +15,7 @@ public class StaticComponentSlot extends ComponentSlot {
     }
 
     @Override
-    public String slot() {
+    public ComponentType slotType() {
         return slot;
     }
 
@@ -27,8 +27,8 @@ public class StaticComponentSlot extends ComponentSlot {
     @Override
     public int getMaxItemCount() {
         return switch (slot) {
-            case SlotType.Tool, SlotType.Any, SlotType.Filtered -> super.getMaxItemCount();
-            case SlotType.None -> 0;
+            case ComponentType.Tool, ComponentType.Any, ComponentType.Filtered -> super.getMaxItemCount();
+            case ComponentType.None -> 0;
             default -> 1;
         };
     }

@@ -1,18 +1,17 @@
 package no.pepega.oc.common.block.inventory;
 
 import com.mojang.datafixers.util.Pair;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.screen.slot.Slot;
 import net.minecraft.util.Identifier;
 import no.pepega.oc.api.component.ComponentItem;
-import no.pepega.oc.common.SlotType;
+import no.pepega.oc.api.component.ComponentType;
 import no.pepega.oc.common.Tier;
 import org.jetbrains.annotations.Nullable;
 
 public abstract class ComponentSlot extends Slot {
-    public abstract String slot();
+    public abstract ComponentType slotType();
     public abstract int tier();
 
     public ComponentSlot(Inventory inventory, int index, int x, int y) {
@@ -28,12 +27,12 @@ public abstract class ComponentSlot extends Slot {
     @Override
     public boolean canInsert(ItemStack stack) {
         if (!inventory.getStack(getIndex()).isEmpty()) return false;
-        if (slot() == SlotType.None || tier() == Tier.None) return false;
-        if (slot() == SlotType.Any && tier() == Tier.Any) return true;
+        if (slotType() == ComponentType.None || tier() == Tier.None) return false;
+        if (slotType() == ComponentType.Any && tier() == Tier.Any) return true;
         // Special case: tool slots fit everything.
-        if (slot() == SlotType.Tool) return true;
+        if (slotType() == ComponentType.Tool) return true;
         if (stack.getItem() instanceof ComponentItem component) {
-            boolean slotOk = (slot() == SlotType.Any || component.componentType() == slot());
+            boolean slotOk = (slotType() == ComponentType.Any || component.componentType() == slotType());
             boolean tierOk = (tier() == Tier.Any || component.tier() <= tier());
             return slotOk && tierOk;
         }
@@ -53,6 +52,6 @@ public abstract class ComponentSlot extends Slot {
 
     @Override
     public boolean isEnabled() {
-        return slot() != SlotType.None && tier() != Tier.None && super.isEnabled();
+        return slotType() != ComponentType.None && tier() != Tier.None && super.isEnabled();
     }
 }

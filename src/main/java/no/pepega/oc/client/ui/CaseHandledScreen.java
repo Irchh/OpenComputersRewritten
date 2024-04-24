@@ -9,7 +9,7 @@ import net.minecraft.screen.slot.Slot;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import no.pepega.oc.OpenComputersRewritten;
-import no.pepega.oc.common.SlotType;
+import no.pepega.oc.api.component.ComponentType;
 import no.pepega.oc.common.block.inventory.ComponentSlot;
 import no.pepega.oc.common.ui.CaseScreenHandler;
 
@@ -58,11 +58,11 @@ public class CaseHandledScreen extends HandledScreen<CaseScreenHandler> {
 
     private void drawSlot(DrawContext context, ComponentSlot slot) {
         drawAt(context, slot.x-1, slot.y-1, 7, 83, slotSize, slotSize, 256, 256, background);
-        String icon = slot.slot();
-        if (icon != SlotType.None && icon != SlotType.Filtered) {
+        ComponentType icon = slot.slotType();
+        if (icon != ComponentType.None && icon != ComponentType.Filtered) {
             //Identifier tex = new Identifier(OpenComputersRewritten.identifier, "textures/icons/" + icon + ".png");
             //System.out.println("drawing slot type " + tex);
-            Identifier iconIdent = new Identifier(OpenComputersRewritten.identifier, "textures/icons/" + icon + ".png");
+            Identifier iconIdent = new Identifier(OpenComputersRewritten.identifier, "textures/icons/" + icon.label + ".png");
 
             drawAt(context, slot.x, slot.y, 16, 16, 16, 16, iconIdent);
             if (Arrays.asList(0, 1, 2).contains(slot.tier())) {
