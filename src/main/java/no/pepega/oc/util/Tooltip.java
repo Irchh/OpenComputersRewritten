@@ -14,6 +14,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Tooltip {
+    public static String namespace = "oc:";
+
     private static int maxWidth = 220;
     private static TextRenderer font = MinecraftClient.getInstance().textRenderer;
 

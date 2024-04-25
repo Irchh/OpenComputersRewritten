@@ -62,7 +62,7 @@ public class CaseHandledScreen extends HandledScreen<CaseScreenHandler> {
     private void drawSlot(DrawContext context, ComponentSlot slot) {
         drawAt(context, slot.x-1, slot.y-1, 7, 83, slotSize, slotSize, 256, 256, background);
         ComponentType icon = slot.slotType();
-        if (icon != ComponentType.None && icon != ComponentType.Filtered) {
+        if (slot.getStack().isEmpty() && icon != ComponentType.None && icon != ComponentType.Filtered) {
             Identifier iconIdent = new Identifier(OpenComputersRewritten.identifier, "textures/icons/" + icon.label + ".png");
 
             drawAt(context, slot.x, slot.y, 16, 16, 16, 16, iconIdent);

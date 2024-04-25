@@ -41,7 +41,7 @@
     "item.opencomputers.analyzer": "Analyzer",
     "item.opencomputers.apu0": "Accelerated Processing Unit (APU) (Tier 2)",
     "item.opencomputers.apu1": "Accelerated Processing Unit (APU) (Tier 3)",
-    "item.opencomputers.apu2": "Accelerated Processing Unit (APU) (Creative)",
+    "item.opencomputers.apucreative": "Accelerated Processing Unit (APU) (Creative)",
     "item.opencomputers.arrowkeys": "Arrow Keys",
     "item.opencomputers.buttongroup": "Button Group",
     "item.opencomputers.cardbase": "Card Base",

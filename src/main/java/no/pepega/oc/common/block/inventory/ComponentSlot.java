@@ -8,6 +8,7 @@ import net.minecraft.util.Identifier;
 import no.pepega.oc.api.component.ComponentItem;
 import no.pepega.oc.api.component.ComponentType;
 import no.pepega.oc.common.Tier;
+import no.pepega.oc.common.item.util.CPULike;
 import org.jetbrains.annotations.Nullable;
 
 public abstract class ComponentSlot extends Slot {
@@ -33,8 +34,13 @@ public abstract class ComponentSlot extends Slot {
         if (slotType() == ComponentType.Tool) return true;
         if (stack.getItem() instanceof ComponentItem component) {
             boolean slotOk = (slotType() == ComponentType.Any || component.componentType() == slotType());
-            boolean tierOk = (tier() == Tier.Any || component.tier() <= tier());
-            return slotOk && tierOk;
+            if (slotType() == ComponentType.CPU && component instanceof CPULike cpu) {
+                boolean tierOk = (tier() == Tier.Any || cpu.cpuTier() <= tier());
+                return slotOk && tierOk;
+            } else {
+                boolean tierOk = (tier() == Tier.Any || component.tier() <= tier());
+                return slotOk && tierOk;
+            }
         }
         return false;
     }

@@ -11,6 +11,7 @@ public class OpenComputersRewritten implements ModInitializer {
     public void onInitialize() {
         System.out.println("OpenComputersRewritten init!");
         Networking.init();
+        Sounds.init();
         Items.init();
         Blocks.init();
         BlockEntities.init();
