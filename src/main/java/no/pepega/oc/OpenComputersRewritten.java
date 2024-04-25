@@ -1,10 +1,8 @@
 package no.pepega.oc;
 
 import net.fabricmc.api.ModInitializer;
-import no.pepega.oc.common.init.BlockEntities;
-import no.pepega.oc.common.init.Blocks;
-import no.pepega.oc.common.init.GUIs;
-import no.pepega.oc.common.init.Items;
+import no.pepega.oc.common.init.*;
+import no.pepega.oc.common.networking.Networking;
 
 public class OpenComputersRewritten implements ModInitializer {
     public static String identifier = "opencomputers";
@@ -12,6 +10,7 @@ public class OpenComputersRewritten implements ModInitializer {
     @Override
     public void onInitialize() {
         System.out.println("OpenComputersRewritten init!");
+        Networking.init();
         Items.init();
         Blocks.init();
         BlockEntities.init();

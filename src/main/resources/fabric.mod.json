@@ -9,7 +9,7 @@
   "contact": {"email": "irjan.olsen@gmail.com"},
 
   "license": "MIT",
-  "icon": "assets/opencomputers-rewrite/icon.png",
+  "icon": "assets/opencomputers-rewrite/textures/logo.png",
 
   "environment": "*",
   "entrypoints": {

@@ -41,13 +41,6 @@ public class Blocks {
     }
 
     private static <T extends ExtendedBlock> void register(T block) {
-        if (block instanceof Case computerCase) {
-            ColorProviderRegistry.BLOCK.register((state, view, pos, tintIndex) -> {
-                if (view == null || view.getBlockEntityRenderData(pos) == null) return Color.rgbValues.get(computerCase.blockTint());
-                return (Integer)view.getBlockEntityRenderData(pos);
-            }, computerCase);
-            ColorProviderRegistry.ITEM.register((stack, tintIndex) -> Color.rgbValues.get(computerCase.blockTint()), computerCase);
-        }
         Registry.register(Registries.BLOCK, new Identifier(OpenComputersRewritten.identifier, block.registryName()), block);
         Registry.register(Registries.ITEM, new Identifier(OpenComputersRewritten.identifier, block.registryName()), new ExtendedBlockItem(block, new Item.Settings()));
     }

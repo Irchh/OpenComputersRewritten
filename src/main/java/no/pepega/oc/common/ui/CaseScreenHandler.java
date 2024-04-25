@@ -8,6 +8,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.ScreenHandlerType;
 import net.minecraft.screen.slot.Slot;
+import net.minecraft.util.math.BlockPos;
 import no.pepega.oc.common.InventorySlots;
 import no.pepega.oc.common.Tier;
 import no.pepega.oc.common.block.inventory.StaticComponentSlot;
@@ -16,30 +17,28 @@ import no.pepega.oc.common.init.GUIs;
 import static no.pepega.oc.client.ui.CaseHandledScreen.slotSize;
 
 public class CaseScreenHandler extends ScreenHandler {
+    private BlockPos pos;
     private final Inventory inventory;
     private final int tier;
 
-    public static CaseScreenHandler tier1(int syncId, PlayerInventory playerInventory) {
-        return new CaseScreenHandler(syncId, playerInventory, new SimpleInventory(7), 0);
+    public static CaseScreenHandler tier1(int syncId, PlayerInventory playerInventory, BlockPos pos) {
+        return new CaseScreenHandler(syncId, playerInventory, new SimpleInventory(7), 0, pos);
     }
 
-    public static CaseScreenHandler tier2(int syncId, PlayerInventory playerInventory) {
-        return new CaseScreenHandler(syncId, playerInventory, new SimpleInventory(8), 1);
+    public static CaseScreenHandler tier2(int syncId, PlayerInventory playerInventory, BlockPos pos) {
+        return new CaseScreenHandler(syncId, playerInventory, new SimpleInventory(8), 1, pos);
     }
 
-    public static CaseScreenHandler tier3(int syncId, PlayerInventory playerInventory) {
-        return new CaseScreenHandler(syncId, playerInventory, new SimpleInventory(10), 2);
+    public static CaseScreenHandler tier3(int syncId, PlayerInventory playerInventory, BlockPos pos) {
+        return new CaseScreenHandler(syncId, playerInventory, new SimpleInventory(10), 2, pos);
     }
 
-    public static CaseScreenHandler creative(int syncId, PlayerInventory playerInventory) {
-        return new CaseScreenHandler(syncId, playerInventory, new SimpleInventory(10), 3);
+    public static CaseScreenHandler creative(int syncId, PlayerInventory playerInventory, BlockPos pos) {
+        return new CaseScreenHandler(syncId, playerInventory, new SimpleInventory(10), 3, pos);
     }
 
-    private int slotIndex = 0;
     private void addNewSlot(Inventory inventory, int x, int y, InventorySlots.InventorySlot slot) {
-        this.addSlot(new StaticComponentSlot(inventory, slotIndex, x, y, slot));
-        //System.out.printf("Adding slot (%s.%s) with index %s @ %s/%s%n", slot.slot, slot.tier, slotIndex, x, y);
-        slotIndex += 1;
+        this.addSlot(new StaticComponentSlot(inventory, slots.size(), x, y, slot));
     }
 
     @Override
@@ -52,8 +51,13 @@ public class CaseScreenHandler extends ScreenHandler {
         };
     }
 
-    public CaseScreenHandler(int syncId, PlayerInventory playerInventory, Inventory inventory, int tier) {
+    public BlockPos getPos() {
+        return pos;
+    }
+
+    public CaseScreenHandler(int syncId, PlayerInventory playerInventory, Inventory inventory, int tier, BlockPos pos) {
         super(null, syncId);
+        this.pos = pos;
         this.tier = tier;
         this.inventory = inventory;
         //some inventories do custom logic when a player opens it.

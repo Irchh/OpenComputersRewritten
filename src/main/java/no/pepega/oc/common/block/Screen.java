@@ -71,14 +71,11 @@ public class Screen extends ExtendedBlock implements Tier, Colored, BlockEntityP
     @Nullable
     @Override
     public BlockState getPlacementState(ItemPlacementContext ctx) {
-        System.out.println("Yaw: " + ctx.getHorizontalPlayerFacing().getOpposite() + " (" + ctx.getPlayerYaw() + ")");
         if (Math.abs(ctx.getPlayer().getPitch()) < 50.0) {
-            System.out.println("Pitch: " + Direction.NORTH + " (" + ctx.getPlayer().getPitch() + ")");
             return super.getPlacementState(ctx)
                     .with(Rotatable.Yaw, ctx.getHorizontalPlayerFacing().getOpposite())
                     .with(Rotatable.Pitch, Direction.NORTH);
         } else {
-            System.out.println("Pitch: " + ctx.getVerticalPlayerLookDirection().getOpposite() + " (" + ctx.getPlayer().getPitch() + ")");
             return super.getPlacementState(ctx)
                     .with(Rotatable.Yaw, ctx.getHorizontalPlayerFacing().getOpposite())
                     .with(Rotatable.Pitch, ctx.getVerticalPlayerLookDirection().getOpposite());

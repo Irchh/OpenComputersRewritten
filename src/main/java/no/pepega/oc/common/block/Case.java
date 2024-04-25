@@ -116,6 +116,12 @@ public class Case extends ExtendedBlock implements Tier, Colored, BlockEntityPro
         return ActionResult.SUCCESS;
     }
 
+    public boolean onPowerChange(World world, BlockPos pos, BlockState state) {
+        var isRunning = state.get(PropertyRunning.Running);
+        world.setBlockState(pos, state.with(PropertyRunning.Running, !isRunning));
+        return !isRunning;
+    }
+
     @Override
     protected void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
         if (state.getBlock() != newState.getBlock()) {
@@ -134,6 +140,4 @@ public class Case extends ExtendedBlock implements Tier, Colored, BlockEntityPro
         // TODO: Implement maybe
         return super.hasComparatorOutput(state);
     }
-
-
 }
