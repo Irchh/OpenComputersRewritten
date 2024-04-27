@@ -9,7 +9,6 @@ import no.pepega.oc.api.machine.Arguments;
 import no.pepega.oc.api.machine.Callback;
 import no.pepega.oc.api.machine.Context;
 import no.pepega.oc.api.network.Connector;
-import no.pepega.oc.api.network.Node;
 import no.pepega.oc.api.network.Visibility;
 import no.pepega.oc.api.prefab.AbstractManagedEnvironment;
 

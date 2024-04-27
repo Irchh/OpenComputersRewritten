@@ -1,7 +1,6 @@
 package no.pepega.oc.integration.opencomputers;
 
 import net.minecraft.item.ItemStack;
-import no.pepega.oc.OCSettings;
 import no.pepega.oc.api.Items;
 import no.pepega.oc.api.driver.EnvironmentProvider;
 import no.pepega.oc.api.driver.item.SlotType;
@@ -12,7 +11,7 @@ import no.pepega.oc.common.component.EEPROM;
 public class DriverEEPROM extends Item {
     @Override
     public boolean worksWith(ItemStack stack) {
-        return isOneOf(stack, Items.get(OCSettings.Constants.ItemName.EEPROM));
+        return isOneOf(stack, Items.get(no.pepega.oc.common.init.Items.eeprom.registryName()));
     }
 
     @Override

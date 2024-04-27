@@ -219,7 +219,7 @@ public class ItemAPIImplementation implements ItemAPI {
 
     @Override
     public ItemStack registerEEPROM(String name, byte[] code, byte[] data, boolean readonly) {
-        var stack = get(OCSettings.Constants.ItemName.EEPROM).createItemStack(1);
+        var stack = get(no.pepega.oc.common.init.Items.eeprom.registryName()).createItemStack(1);
         var itemData = stack.getOrDefault(OCDataComponentTypes.LEGACY_NBT_COMPAT, NbtComponent.DEFAULT).copyNbt();
         NbtCompound nbt;
         if (itemData.contains("data", COMPOUND_TYPE)) {

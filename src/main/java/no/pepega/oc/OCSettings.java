@@ -20,11 +20,15 @@ public class OCSettings {
     public static final int eepromSize = 4096;
     public static final int eepromDataSize = 256;
     public static final double[] callBudgets = new double[] {0.5, 1.0, 1.5};
+    public static final int[] cpuComponentSupport = new int[] {8, 12, 16, 1024};
+
     // computer.lua
     public static final int maxTotalRam = 67108864;
-    public static final int[] ramSizes = new int[] {192, 256, 384, 512, 768, 1024};;
+    public static final int[] ramSizes = new int[] {192, 256, 384, 512, 768, 1024};
+
     // power.cost
     public static final double eepromWriteCost = 50;
+
     //
     public static final int[] CPUComponentByTier = new int[] {8, 12, 16, 1024};
 
@@ -38,7 +42,6 @@ public class OCSettings {
         }
 
         public static final class ItemName {
-            public static final String EEPROM = "eeprom";
             public static final String Floppy = "floppy";
             public static final String LuaBios = "luabios";
         }
