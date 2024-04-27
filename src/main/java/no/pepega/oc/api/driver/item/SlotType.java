@@ -1,9 +1,9 @@
-package no.pepega.oc.api.component;
+package no.pepega.oc.api.driver.item;
 
 import java.util.Arrays;
 import java.util.List;
 
-public enum ComponentType {
+public enum SlotType {
     None("none"),
     Any("any"),
 
@@ -21,11 +21,11 @@ public enum ComponentType {
     Tool("tool"),
     Upgrade("upgrade");
 
-    public static final List<ComponentType> All = Arrays.asList(Card, ComponentBus, Container, CPU, EEPROM, Floppy, HDD, Memory, RackMountable, Tablet, Tool, Upgrade);
+    public static final List<SlotType> All = Arrays.asList(Card, ComponentBus, Container, CPU, EEPROM, Floppy, HDD, Memory, RackMountable, Tablet, Tool, Upgrade);
 
     public final String label;
 
-    ComponentType(String label) {
+    SlotType(String label) {
         this.label = label;
     }
 }

@@ -13,6 +13,8 @@ import no.pepega.oc.common.block.Screen;
 import no.pepega.oc.common.block.util.ExtendedBlockItem;
 import no.pepega.oc.util.Color;
 
+import static no.pepega.oc.api.API.items;
+
 public class Blocks {
     public static final Case case1 = new Case(Block.Settings.create().strength(4.0f), 0);
     public static final Case case2 = new Case(Block.Settings.create().strength(4.0f), 1);
@@ -27,21 +29,17 @@ public class Blocks {
     }
 
     public static void runOnAllBlocks(BlockInterface onBlock) {
+        // Order based on original mod
         onBlock.onBlock(case1);
         onBlock.onBlock(case2);
         onBlock.onBlock(case3);
-        onBlock.onBlock(case4);
         onBlock.onBlock(screen1);
         onBlock.onBlock(screen2);
         onBlock.onBlock(screen3);
+        onBlock.onBlock(case4);
     }
 
     public static void init() {
-        runOnAllBlocks(Blocks::register);
-    }
-
-    private static <T extends ExtendedBlock> void register(T block) {
-        Registry.register(Registries.BLOCK, new Identifier(OpenComputersRewritten.identifier, block.registryName()), block);
-        Registry.register(Registries.ITEM, new Identifier(OpenComputersRewritten.identifier, block.registryName()), new ExtendedBlockItem(block, new Item.Settings()));
+        runOnAllBlocks(items::registerBlock);
     }
 }

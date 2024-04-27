@@ -6,9 +6,9 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
+import no.pepega.oc.api.Driver;
 import no.pepega.oc.api.Machine;
-import no.pepega.oc.api.component.ComponentItem;
-import no.pepega.oc.api.component.MutableProcessor;
+import no.pepega.oc.api.driver.item.MutableProcessor;
 import no.pepega.oc.api.machine.Architecture;
 import no.pepega.oc.util.Tooltip;
 
@@ -18,11 +18,11 @@ import java.util.List;
 
 import static no.pepega.oc.OCSettings.CPUComponentByTier;
 
-public interface CPULike extends ComponentItem {
+public interface CPULike {
     int cpuTier();
 
     default List<Object> cpuTooltipData() {
-        return Collections.singletonList(CPUComponentByTier[tier()]);
+        return Collections.singletonList(CPUComponentByTier[cpuTier()]);
     }
 
     default void cpuTooltipExtended(ItemStack stack, List<Text> tooltip) {
@@ -37,8 +37,8 @@ public interface CPULike extends ComponentItem {
         if (player.isSneaking()) {
             if (!world.isClient()) {
                 var stack = player.getStackInHand(hand);
-                var item = stack.getItem();
-                if (item instanceof MutableProcessor processor) {
+                var driver = Driver.driverFor(stack);
+                if (driver instanceof MutableProcessor processor) {
                     List<Class<? extends Architecture>> architectures = new ArrayList<>(processor.allArchitectures());
                     if (!architectures.isEmpty()) {
                         int currentIndex = architectures.indexOf(processor.architecture(stack));
@@ -48,7 +48,7 @@ public interface CPULike extends ComponentItem {
                         processor.setArchitecture(stack, archClass);
                         player.sendMessage(Text.translatable(Tooltip.namespace + "tooltip.cpu.Architecture", archName), false);
                     }
-                    return TypedActionResult.success(stack);
+                    player.swingHand(Hand.MAIN_HAND);
                 }
             }
         }

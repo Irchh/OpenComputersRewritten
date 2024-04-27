@@ -1,12 +1,10 @@
 package no.pepega.oc.client;
 
-import net.minecraft.client.texture.SpriteAtlasTexture;
 import net.minecraft.client.util.SpriteIdentifier;
 import net.minecraft.screen.PlayerScreenHandler;
 import net.minecraft.util.Identifier;
 import no.pepega.oc.OpenComputersRewritten;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 

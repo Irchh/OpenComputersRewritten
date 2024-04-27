@@ -5,6 +5,7 @@ import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 import no.pepega.oc.OpenComputersRewritten;
+import no.pepega.oc.api.API;
 import no.pepega.oc.common.item.APU;
 import no.pepega.oc.common.item.CPU;
 import no.pepega.oc.common.item.EEPROM;
@@ -31,26 +32,26 @@ public class Items {
     }
 
     public static void runOnAllItems(ItemInterface onItem) {
-        onItem.onItem(eeprom);
+        // Order based on original mod
         onItem.onItem(cpu0);
         onItem.onItem(cpu1);
         onItem.onItem(cpu2);
-        onItem.onItem(apu0);
-        onItem.onItem(apu1);
-        onItem.onItem(apucreative);
+
         onItem.onItem(memory0);
         onItem.onItem(memory1);
         onItem.onItem(memory2);
         onItem.onItem(memory3);
         onItem.onItem(memory4);
         onItem.onItem(memory5);
+
+        onItem.onItem(apu0);
+        onItem.onItem(apu1);
+        onItem.onItem(apucreative);
+
+        onItem.onItem(eeprom);
     }
 
     public static void init() {
-        runOnAllItems(Items::register);
-    }
-
-    private static <T extends ExtendedItem> T register(T item) {
-        return Registry.register(Registries.ITEM, new Identifier(OpenComputersRewritten.identifier, item.registryName()), item);
+        API.items.init();
     }
 }

@@ -5,6 +5,8 @@ import net.minecraft.client.font.TextHandler;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.text.*;
 import net.minecraft.util.Formatting;
+import no.pepega.oc.OCSettings;
+import no.pepega.oc.OpenComputersRewritten;
 import no.pepega.oc.client.KeyBindings;
 
 import java.util.ArrayList;
@@ -14,7 +16,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Tooltip {
-    public static String namespace = "oc:";
+    public static String namespace = OCSettings.namespace;
 
     private static int maxWidth = 220;
     private static TextRenderer font = MinecraftClient.getInstance().textRenderer;
@@ -29,9 +31,9 @@ public class Tooltip {
         try {
             tooltip = Localization.localizeImmediately("tooltip." + name, args);
         } catch (Exception e) {
-            System.err.println("Error localizing string, create an issue at https://github.com/Irchh/OpenComputersRewritten");
-            System.err.println("Tried localizing: " + e);
-            System.err.println("Error: " + e);
+            OpenComputersRewritten.log.error("Error localizing string, create an issue at https://github.com/Irchh/OpenComputersRewritten");
+            OpenComputersRewritten.log.error("Tried localizing: %s", e);
+            OpenComputersRewritten.log.error("Error: %s", e);
             tooltip = "tooltip." + name;
         }
         if (font == null) return Arrays.asList(tooltip.split("\\r?\\n"));

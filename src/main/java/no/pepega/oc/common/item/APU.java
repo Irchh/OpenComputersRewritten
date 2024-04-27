@@ -6,34 +6,29 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
-import no.pepega.oc.api.component.ComponentType;
 import no.pepega.oc.api.machine.Architecture;
 import no.pepega.oc.common.Tier;
 import no.pepega.oc.common.item.util.CPULike;
 import no.pepega.oc.common.item.util.ExtendedItem;
 import no.pepega.oc.common.item.util.GPULike;
+import no.pepega.oc.common.registry.OCRegistry;
+import no.pepega.oc.api.internal.Tiered;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-public class APU extends ExtendedItem implements CPULike, GPULike {
+public class APU extends ExtendedItem implements CPULike, GPULike, Tiered {
     private final int tier;
-    private Architecture architecture = null;
+    private Architecture architecture;
 
     public APU(Settings settings, int tier) {
         super(settings);
         this.tier = tier;
-    }
-
-    @Override
-    public ComponentType componentType() {
-        return ComponentType.CPU;
-    }
-
-    @Override
-    public List<ComponentType> provides() {
-        return Arrays.asList(ComponentType.CPU, ComponentType.Card);
+        try {
+            architecture = OCRegistry.getArchitectures().getFirst().newInstance();
+        } catch (InstantiationException | IllegalAccessException e) {
+            architecture = null;
+        }
     }
 
     @Override

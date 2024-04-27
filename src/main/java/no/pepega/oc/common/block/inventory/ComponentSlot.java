@@ -5,18 +5,21 @@ import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.screen.slot.Slot;
 import net.minecraft.util.Identifier;
-import no.pepega.oc.api.component.ComponentItem;
-import no.pepega.oc.api.component.ComponentType;
+import no.pepega.oc.api.Driver;
+import no.pepega.oc.api.driver.item.SlotType;
+import no.pepega.oc.api.network.EnvironmentHost;
 import no.pepega.oc.common.Tier;
-import no.pepega.oc.common.item.util.CPULike;
 import org.jetbrains.annotations.Nullable;
 
 public abstract class ComponentSlot extends Slot {
-    public abstract ComponentType slotType();
+    private final Class<? extends EnvironmentHost> host;
+
+    public abstract SlotType slotType();
     public abstract int tier();
 
-    public ComponentSlot(Inventory inventory, int index, int x, int y) {
+    public ComponentSlot(Inventory inventory, int index, int x, int y, Class<? extends EnvironmentHost> host) {
         super(inventory, index, x, y);
+        this.host = host;
     }
 
     @Nullable
@@ -28,19 +31,18 @@ public abstract class ComponentSlot extends Slot {
     @Override
     public boolean canInsert(ItemStack stack) {
         if (!inventory.getStack(getIndex()).isEmpty()) return false;
-        if (slotType() == ComponentType.None || tier() == Tier.None) return false;
-        if (slotType() == ComponentType.Any && tier() == Tier.Any) return true;
+        if (slotType() == SlotType.None || tier() == Tier.None) return false;
+        if (slotType() == SlotType.Any && tier() == Tier.Any) return true;
         // Special case: tool slots fit everything.
-        if (slotType() == ComponentType.Tool) return true;
-        if (stack.getItem() instanceof ComponentItem component) {
-            boolean slotOk = (slotType() == ComponentType.Any || component.componentType() == slotType());
-            if (slotType() == ComponentType.CPU && component instanceof CPULike cpu) {
-                boolean tierOk = (tier() == Tier.Any || cpu.cpuTier() <= tier());
-                return slotOk && tierOk;
-            } else {
-                boolean tierOk = (tier() == Tier.Any || component.tier() <= tier());
-                return slotOk && tierOk;
-            }
+        if (slotType() == SlotType.Tool) return true;
+        var driver = switch (host) {
+            case null -> Driver.driverFor(stack);
+            default -> Driver.driverFor(stack, host);
+        };
+        if (driver != null) {
+            var slotOk = (slotType() == SlotType.Any || driver.slot(stack) == slotType());
+            var tierOk = (tier() == Tier.Any || driver.tier(stack) <= tier());
+            return slotOk && tierOk;
         }
         return false;
     }
@@ -58,6 +60,6 @@ public abstract class ComponentSlot extends Slot {
 
     @Override
     public boolean isEnabled() {
-        return slotType() != ComponentType.None && tier() != Tier.None && super.isEnabled();
+        return slotType() != SlotType.None && tier() != Tier.None && super.isEnabled();
     }
 }

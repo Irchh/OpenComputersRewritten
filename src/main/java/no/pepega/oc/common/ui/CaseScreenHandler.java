@@ -38,7 +38,8 @@ public class CaseScreenHandler extends ScreenHandler {
     }
 
     private void addNewSlot(Inventory inventory, int x, int y, InventorySlots.InventorySlot slot) {
-        this.addSlot(new StaticComponentSlot(inventory, slots.size(), x, y, slot));
+        // TODO: get host lol (Class<? extends EnvironmentHost> host)
+        this.addSlot(new StaticComponentSlot(inventory, slots.size(), x, y, slot, null));
     }
 
     @Override

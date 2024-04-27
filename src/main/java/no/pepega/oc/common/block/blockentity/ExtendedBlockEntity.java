@@ -12,7 +12,6 @@ import net.minecraft.network.listener.ClientPlayPacketListener;
 import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
 import net.minecraft.registry.RegistryWrapper;
-import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
@@ -22,12 +21,6 @@ import org.jetbrains.annotations.Nullable;
 public class ExtendedBlockEntity extends BlockEntity {
     public ExtendedBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state) {
         super(type, pos, state);
-    }
-
-    public void onBlockEntityChange() {
-        assert world != null;
-        // TODO: check if this works
-        world.updateListeners(pos, getCachedState(), world.getBlockState(pos), Block.NOTIFY_LISTENERS);
     }
 
     @Nullable

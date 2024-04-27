@@ -1,4 +1,5 @@
-package no.pepega.oc.api.component;
+package no.pepega.oc.api.driver.item;
+
 
 import net.minecraft.item.ItemStack;
 import no.pepega.oc.api.machine.Architecture;

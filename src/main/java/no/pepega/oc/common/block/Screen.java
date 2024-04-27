@@ -18,7 +18,7 @@ import no.pepega.oc.common.block.blockentity.ScreenEntity;
 import no.pepega.oc.common.block.util.Colored;
 import no.pepega.oc.common.block.util.ExtendedBlock;
 import no.pepega.oc.common.block.util.Rotatable;
-import no.pepega.oc.common.block.util.Tier;
+import no.pepega.oc.api.internal.Tiered;
 import no.pepega.oc.util.Color;
 import no.pepega.oc.util.PackedColor;
 import no.pepega.oc.util.Tooltip;
@@ -26,7 +26,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class Screen extends ExtendedBlock implements Tier, Colored, BlockEntityProvider {
+public class Screen extends ExtendedBlock implements Tiered, Colored, BlockEntityProvider {
     private final int tier;
 
     public Screen(Settings settings, int tier) {

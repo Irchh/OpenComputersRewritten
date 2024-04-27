@@ -2,27 +2,24 @@ package no.pepega.oc.common.block;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockEntityProvider;
-import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.client.item.TooltipType;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.Inventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.screen.NamedScreenHandlerFactory;
-import net.minecraft.screen.ScreenHandler;
 import net.minecraft.state.StateManager;
 import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.DyeColor;
-import net.minecraft.util.Hand;
 import net.minecraft.util.ItemScatterer;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
+import no.pepega.oc.api.internal.Tiered;
 import no.pepega.oc.common.block.blockentity.CaseEntity;
 import no.pepega.oc.common.block.util.*;
 import no.pepega.oc.util.Color;
@@ -31,7 +28,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class Case extends ExtendedBlock implements Tier, Colored, BlockEntityProvider {
+public class Case extends ExtendedBlock implements Tiered, Colored, BlockEntityProvider {
     private final int tier;
 
     public Case(Settings settings, int tier) {

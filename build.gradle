@@ -16,6 +16,21 @@ repositories {
     // Loom adds the essential maven repositories to download Minecraft and libraries from automatically.
     // See https://docs.gradle.org/current/userguide/declaring_repositories.html
     // for more information about repositories.
+    ivy {
+        name 'asie dependency mirror'
+        url "https://asie.pl/javadeps/"
+        patternLayout {
+            artifact "[module]-[revision](-[classifier]).[ext]"
+        }
+        content {
+            includeModule '', 'OC-LuaJ'
+            includeModule '', 'OC-JNLua'
+            includeModule '', 'OC-JNLua-Natives'
+        }
+        metadataSources {
+            artifact()
+        }
+    }
 }
 
 dependencies {
@@ -26,6 +41,10 @@ dependencies {
 
     // Fabric API. This is technically optional, but you probably want it anyway.
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+
+    implementation group: '', name: 'OC-LuaJ', version: '20220907.1', ext: 'jar'
+    implementation group: '', name: 'OC-JNLua', version: '20230530.0', ext: 'jar'
+    implementation group: '', name: 'OC-JNLua-Natives', version: '20220928.1', ext: 'jar'
 }
 
 processResources {

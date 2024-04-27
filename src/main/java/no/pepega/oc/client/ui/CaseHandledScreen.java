@@ -12,7 +12,7 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import no.pepega.oc.OpenComputersRewritten;
-import no.pepega.oc.api.component.ComponentType;
+import no.pepega.oc.api.driver.item.SlotType;
 import no.pepega.oc.common.block.blockentity.CaseEntity;
 import no.pepega.oc.common.block.inventory.ComponentSlot;
 import no.pepega.oc.common.networking.PowerButtonPressedPayload;
@@ -61,8 +61,8 @@ public class CaseHandledScreen extends HandledScreen<CaseScreenHandler> {
 
     private void drawSlot(DrawContext context, ComponentSlot slot) {
         drawAt(context, slot.x-1, slot.y-1, 7, 83, slotSize, slotSize, 256, 256, background);
-        ComponentType icon = slot.slotType();
-        if (slot.getStack().isEmpty() && icon != ComponentType.None && icon != ComponentType.Filtered) {
+        SlotType icon = slot.slotType();
+        if (slot.getStack().isEmpty() && icon != SlotType.None && icon != SlotType.Filtered) {
             Identifier iconIdent = new Identifier(OpenComputersRewritten.identifier, "textures/icons/" + icon.label + ".png");
 
             drawAt(context, slot.x, slot.y, 16, 16, 16, 16, iconIdent);

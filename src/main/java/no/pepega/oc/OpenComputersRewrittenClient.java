@@ -6,7 +6,7 @@ import no.pepega.oc.client.KeyBindings;
 import no.pepega.oc.client.OCItemGroup;
 import no.pepega.oc.client.Textures;
 import no.pepega.oc.client.models.OCModelLoader;
-import no.pepega.oc.client.ui.ClientHandlesScreens;
+import no.pepega.oc.client.ui.ClientHandledScreens;
 
 import static no.pepega.oc.common.init.Blocks.runOnAllBlocks;
 
@@ -15,11 +15,11 @@ public class OpenComputersRewrittenClient implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
-        System.out.println("OpenComputersRewritten client init!");
+        OpenComputersRewritten.log.info("OpenComputersRewritten client init!");
         runOnAllBlocks(OCModelLoader::setColorOfCase);
         textures = new Textures();
         ModelLoadingPlugin.register(new OCModelLoader());
-        ClientHandlesScreens.init();
+        ClientHandledScreens.init();
         KeyBindings.init();
         OCItemGroup.init();
     }

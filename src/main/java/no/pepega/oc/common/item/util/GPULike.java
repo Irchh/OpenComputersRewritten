@@ -1,6 +1,5 @@
 package no.pepega.oc.common.item.util;
 
-import no.pepega.oc.api.component.ComponentItem;
 import no.pepega.oc.util.PackedColor;
 
 import java.util.AbstractMap;
@@ -11,7 +10,7 @@ import java.util.Map;
 import static no.pepega.oc.OCSettings.screenDepthsByTier;
 import static no.pepega.oc.OCSettings.screenResolutionsByTier;
 
-public interface GPULike extends ComponentItem {
+public interface GPULike {
     int gpuTier();
 
     default List<Object> gpuTooltipData() {

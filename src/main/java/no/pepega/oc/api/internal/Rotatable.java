@@ -1,6 +1,6 @@
 package no.pepega.oc.api.internal;
 
-//import no.pepega.oc.api.driver.DriverItem;
+import no.pepega.oc.api.driver.DriverItem;
 import net.minecraft.util.math.Direction;
 
 /**
@@ -19,7 +19,7 @@ public interface Rotatable {
      * Intended to be used to query the orientation of an item components' host.
      * For example:
      * <pre>
-     * class SomeDriver implements li.cil.oc.api.driver.Item {
+     * class SomeDriver implements no.pepega.oc.api.driver.Item {
      *     // ...
      *     ManagedEnvironment createEnvironment(ItemStack stack, TileEntity tileentity) {
      *         if (tileentity instanceof Rotatable) {

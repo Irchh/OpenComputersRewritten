@@ -6,25 +6,26 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
-import no.pepega.oc.api.component.ComponentType;
 import no.pepega.oc.api.machine.Architecture;
 import no.pepega.oc.common.item.util.CPULike;
 import no.pepega.oc.common.item.util.ExtendedItem;
+import no.pepega.oc.common.registry.OCRegistry;
+import no.pepega.oc.api.internal.Tiered;
 
 import java.util.List;
 
-public class CPU extends ExtendedItem implements CPULike {
+public class CPU extends ExtendedItem implements CPULike, Tiered {
     private final int tier;
-    private Architecture architecture = null;
+    private Architecture architecture;
 
     public CPU(Settings settings, int tier) {
         super(settings);
         this.tier = tier;
-    }
-
-    @Override
-    public ComponentType componentType() {
-        return ComponentType.CPU;
+        try {
+            architecture = OCRegistry.getArchitectures().getFirst().newInstance();
+        } catch (InstantiationException | IllegalAccessException e) {
+            architecture = null;
+        }
     }
 
     @Override

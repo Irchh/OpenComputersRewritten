@@ -1,6 +1,7 @@
-package no.pepega.oc.api.component;
+package no.pepega.oc.api.driver.item;
 
 import net.minecraft.item.ItemStack;
+import no.pepega.oc.api.driver.DriverItem;
 import no.pepega.oc.api.machine.Architecture;
 
 /**
@@ -11,7 +12,7 @@ import no.pepega.oc.api.machine.Architecture;
  * work. If it is installed in an external inventory the server will not
  * recognize the memory.
  */
-public interface Processor extends ComponentItem {
+public interface Processor extends DriverItem {
     /**
      * The additional number of components supported if this processor is
      * installed in the server.
