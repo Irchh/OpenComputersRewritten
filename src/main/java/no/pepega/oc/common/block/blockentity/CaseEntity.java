@@ -228,4 +228,13 @@ public class CaseEntity extends ExtendedBlockEntity implements ExtendedScreenHan
     public void markChanged() {
 
     }
+
+    public void tick(World world, BlockPos pos, BlockState state) {
+        for (Direction direction : Direction.values()) {
+            var neighbor = world.getBlockEntity(pos.offset(direction));
+            if (neighbor instanceof ScreenEntity screen) {
+                screen.setText(this.powered() ? "On" : "Off");
+            }
+        }
+    }
 }

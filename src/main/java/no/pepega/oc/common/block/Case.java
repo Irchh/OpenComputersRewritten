@@ -4,6 +4,8 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockEntityProvider;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.block.entity.BlockEntityTicker;
+import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.client.item.TooltipType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
@@ -136,5 +138,15 @@ public class Case extends ExtendedBlock implements Tiered, Colored, BlockEntityP
     public boolean hasComparatorOutput(BlockState state) {
         // TODO: Implement maybe
         return super.hasComparatorOutput(state);
+    }
+
+    @Nullable
+    @Override
+    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
+        return (blockEntityWorld, pos, blockState, be) -> {
+            if (be instanceof CaseEntity ce) {
+                ce.tick(blockEntityWorld, pos, blockState);
+            }
+        };
     }
 }
