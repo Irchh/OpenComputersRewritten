@@ -2,6 +2,7 @@ package no.pepega.oc.integration.opencomputers;
 
 import net.minecraft.component.type.NbtComponent;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NbtCompound;
 import no.pepega.oc.OCSettings;
 import no.pepega.oc.OpenComputersRewritten;
 import no.pepega.oc.api.Items;

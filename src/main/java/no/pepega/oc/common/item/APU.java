@@ -21,7 +21,7 @@ public class APU extends ExtendedItem implements CPULike, GPULike, Tiered {
     private final int tier;
     private Architecture architecture;
 
-    public APU(Settings settings, int tier) {
+    public APU(net.minecraft.item.Item.Settings settings, int tier) {
         super(settings);
         this.tier = tier;
         try {

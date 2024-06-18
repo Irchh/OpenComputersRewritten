@@ -2,6 +2,8 @@ package no.pepega.oc.common.networking;
 
 import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
+import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.server.world.ServerWorld;
 import no.pepega.oc.common.block.blockentity.CaseEntity;
 
 public class Networking {

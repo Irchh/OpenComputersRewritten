@@ -26,6 +26,6 @@ public class OCItemGroup {
     }
 
     public static void init() {
-        Registry.register(Registries.ITEM_GROUP, new Identifier(OpenComputersRewritten.identifier, "itemgroup"), ITEM_GROUP);
+        Registry.register(Registries.ITEM_GROUP, Identifier.of(OpenComputersRewritten.identifier, "itemgroup"), ITEM_GROUP);
     }
 }

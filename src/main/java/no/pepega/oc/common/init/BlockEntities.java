@@ -20,6 +20,6 @@ public class BlockEntities {
     }
 
     private static <T extends ExtendedBlockEntity> BlockEntityType<T> register(BlockEntityType.BlockEntityFactory<T> blockEntity, String path, Block... blocks) {
-        return Registry.register(Registries.BLOCK_ENTITY_TYPE, new Identifier(OpenComputersRewritten.identifier, path), BlockEntityType.Builder.create(blockEntity, blocks).build());
+        return Registry.register(Registries.BLOCK_ENTITY_TYPE, Identifier.of(OpenComputersRewritten.identifier, path), BlockEntityType.Builder.create(blockEntity, blocks).build());
     }
 }

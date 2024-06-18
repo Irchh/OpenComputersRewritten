@@ -7,7 +7,7 @@ import net.minecraft.util.Identifier;
 import no.pepega.oc.OpenComputersRewritten;
 
 public class Sounds {
-    public static final Identifier COMPUTER_RUNNING_ID = new Identifier(OpenComputersRewritten.identifier, "computer_running");
+    public static final Identifier COMPUTER_RUNNING_ID = Identifier.of(OpenComputersRewritten.identifier, "computer_running");
     public static SoundEvent COMPUTER_RUNNING_EVENT = SoundEvent.of(COMPUTER_RUNNING_ID);
 
     public static void init() {

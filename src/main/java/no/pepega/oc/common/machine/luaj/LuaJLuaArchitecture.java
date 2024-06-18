@@ -13,6 +13,7 @@ import no.pepega.oc.api.machine.Architecture;
 import no.pepega.oc.api.machine.ExecutionResult;
 import no.pepega.oc.api.machine.LimitReachedException;
 import no.pepega.oc.api.machine.Machine;
+import no.pepega.oc.api.machine.Signal;
 import no.pepega.oc.util.LuaJHelper;
 
 import java.io.FileNotFoundException;

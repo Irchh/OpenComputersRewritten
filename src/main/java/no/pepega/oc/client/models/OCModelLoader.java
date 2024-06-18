@@ -12,12 +12,15 @@ public class OCModelLoader implements ModelLoadingPlugin {
         // We want to add our model when the models are loaded
         pluginContext.modifyModelOnLoad().register((original, context) -> {
             // This is called for every model that is loaded, so make sure we only target ours
-            if(context.id().toString().startsWith("opencomputers:screen")) {
-                return new ScreenModel();
-            } else {
-                // If we don't modify the model we just return the original as-is
-                return original;
+            var dependencies = original.getModelDependencies();
+            for (var dependency : dependencies) {
+                // TODO: idk if this is correct, but it seems to work
+                if (dependency.toString().equals("opencomputers:block/screen")) {
+                    return new ScreenModel();
+                }
             }
+            // If we don't modify the model we just return the original as-is
+            return original;
         });
     }
 

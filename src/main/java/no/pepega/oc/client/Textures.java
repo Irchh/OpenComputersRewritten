@@ -39,7 +39,7 @@ public class Textures {
         protected abstract String basePath();
 
         protected SpriteIdentifier L(String name) {
-            return new SpriteIdentifier(PlayerScreenHandler.BLOCK_ATLAS_TEXTURE, new Identifier(OpenComputersRewritten.identifier, String.format(basePath(), name)));
+            return new SpriteIdentifier(PlayerScreenHandler.BLOCK_ATLAS_TEXTURE, Identifier.of(OpenComputersRewritten.identifier, String.format(basePath(), name)));
         }
     }
 }

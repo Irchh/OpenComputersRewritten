@@ -19,9 +19,9 @@ public class GUIs {
     public static ScreenHandlerType<CaseScreenHandler> CASE_SCREEN_HANDLER_TIERC = new ExtendedScreenHandlerType<>(CaseScreenHandler::creative, BlockPos.PACKET_CODEC.cast());
 
     public static void init() {
-        Registry.register(Registries.SCREEN_HANDLER, new Identifier(OpenComputersRewritten.identifier, "case1"), CASE_SCREEN_HANDLER_TIER1);
-        Registry.register(Registries.SCREEN_HANDLER, new Identifier(OpenComputersRewritten.identifier, "case2"), CASE_SCREEN_HANDLER_TIER2);
-        Registry.register(Registries.SCREEN_HANDLER, new Identifier(OpenComputersRewritten.identifier, "case3"), CASE_SCREEN_HANDLER_TIER3);
-        Registry.register(Registries.SCREEN_HANDLER, new Identifier(OpenComputersRewritten.identifier, "casecreative"), CASE_SCREEN_HANDLER_TIERC);
+        Registry.register(Registries.SCREEN_HANDLER, Identifier.of(OpenComputersRewritten.identifier, "case1"), CASE_SCREEN_HANDLER_TIER1);
+        Registry.register(Registries.SCREEN_HANDLER, Identifier.of(OpenComputersRewritten.identifier, "case2"), CASE_SCREEN_HANDLER_TIER2);
+        Registry.register(Registries.SCREEN_HANDLER, Identifier.of(OpenComputersRewritten.identifier, "case3"), CASE_SCREEN_HANDLER_TIER3);
+        Registry.register(Registries.SCREEN_HANDLER, Identifier.of(OpenComputersRewritten.identifier, "casecreative"), CASE_SCREEN_HANDLER_TIERC);
     }
 }

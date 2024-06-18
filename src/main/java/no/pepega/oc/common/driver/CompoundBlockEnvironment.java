@@ -1,5 +1,6 @@
 package no.pepega.oc.common.driver;
 
+import com.google.common.hash.Hasher;
 import com.google.common.hash.Hashing;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.Pair;

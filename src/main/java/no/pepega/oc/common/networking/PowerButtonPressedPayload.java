@@ -9,7 +9,7 @@ import net.minecraft.util.math.BlockPos;
 import no.pepega.oc.OpenComputersRewritten;
 
 public record PowerButtonPressedPayload(BlockPos pos) implements CustomPayload {
-    public static final CustomPayload.Id<PowerButtonPressedPayload> PACKET_ID = new CustomPayload.Id<>(new Identifier(OpenComputersRewritten.identifier, "power_button_pressed"));
+    public static final CustomPayload.Id<PowerButtonPressedPayload> PACKET_ID = new CustomPayload.Id<>(Identifier.of(OpenComputersRewritten.identifier, "power_button_pressed"));
     public static final PacketCodec<RegistryByteBuf, PowerButtonPressedPayload> PACKET_CODEC = BlockPos.PACKET_CODEC.xmap(PowerButtonPressedPayload::new, PowerButtonPressedPayload::pos).cast();
 
     public BlockPos get() {

@@ -29,7 +29,7 @@ public class CaseHandledScreen extends HandledScreen<CaseScreenHandler> {
         }
     }
 
-    Identifier background = new Identifier(OpenComputersRewritten.identifier, "textures/gui/background.png");
+    Identifier background = Identifier.of(OpenComputersRewritten.identifier, "textures/gui/background.png");
     private int backgroundWidth = 176;
     private int backgroundHeight = 166;
     private int backgroundX;
@@ -37,7 +37,7 @@ public class CaseHandledScreen extends HandledScreen<CaseScreenHandler> {
 
     public static final int slotSize = 18;
 
-    Identifier computerPCB = new Identifier(OpenComputersRewritten.identifier, "textures/gui/computer.png");
+    Identifier computerPCB = Identifier.of(OpenComputersRewritten.identifier, "textures/gui/computer.png");
 
     @Override
     protected void drawBackground(DrawContext context, float delta, int mouseX, int mouseY) {
@@ -63,11 +63,11 @@ public class CaseHandledScreen extends HandledScreen<CaseScreenHandler> {
         drawAt(context, slot.x-1, slot.y-1, 7, 83, slotSize, slotSize, 256, 256, background);
         SlotType icon = slot.slotType();
         if (slot.getStack().isEmpty() && icon != SlotType.None && icon != SlotType.Filtered) {
-            Identifier iconIdent = new Identifier(OpenComputersRewritten.identifier, "textures/icons/" + icon.label + ".png");
+            Identifier iconIdent = Identifier.of(OpenComputersRewritten.identifier, "textures/icons/" + icon.label + ".png");
 
             drawAt(context, slot.x, slot.y, 16, 16, 16, 16, iconIdent);
             if (Arrays.asList(0, 1, 2).contains(slot.tier())) {
-                Identifier tierIdent = new Identifier(OpenComputersRewritten.identifier, "textures/icons/tier" + slot.tier() + ".png");
+                Identifier tierIdent = Identifier.of(OpenComputersRewritten.identifier, "textures/icons/tier" + slot.tier() + ".png");
                 drawAt(context, slot.x, slot.y, 16, 16, 16, 16, tierIdent);
             }
         }
@@ -104,7 +104,7 @@ public class CaseHandledScreen extends HandledScreen<CaseScreenHandler> {
         if (client != null && client.world != null && client.world.getBlockEntity(handler.getPos()) instanceof CaseEntity caseEntity && caseEntity.powered()) {
             u = 18;
         }
-        Identifier PowerIdent = new Identifier(OpenComputersRewritten.identifier, "textures/gui/button_power.png");
+        Identifier PowerIdent = Identifier.of(OpenComputersRewritten.identifier, "textures/gui/button_power.png");
         drawAt(context, backgroundX + 70, backgroundY + 33, u, v, 18, 18, 36, 36, PowerIdent);
     }
 

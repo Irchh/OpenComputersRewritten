@@ -1,17 +1,9 @@
 package no.pepega.oc.common.init;
 
-import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
 import net.minecraft.block.Block;
-import net.minecraft.item.Item;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
-import net.minecraft.util.Identifier;
-import no.pepega.oc.OpenComputersRewritten;
 import no.pepega.oc.common.block.Case;
 import no.pepega.oc.common.block.util.ExtendedBlock;
 import no.pepega.oc.common.block.Screen;
-import no.pepega.oc.common.block.util.ExtendedBlockItem;
-import no.pepega.oc.util.Color;
 
 import static no.pepega.oc.api.API.items;
 

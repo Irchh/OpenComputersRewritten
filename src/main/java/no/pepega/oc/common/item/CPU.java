@@ -18,7 +18,7 @@ public class CPU extends ExtendedItem implements CPULike, Tiered {
     private final int tier;
     private Architecture architecture;
 
-    public CPU(Settings settings, int tier) {
+    public CPU(net.minecraft.item.Item.Settings settings, int tier) {
         super(settings);
         this.tier = tier;
         try {

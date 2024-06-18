@@ -53,7 +53,7 @@ public class ItemAPIImplementation implements ItemAPI {
     public Block registerBlockOnly(Block instance, String id) {
         if (!descriptors.containsKey(id)) {
             if (instance instanceof ExtendedBlock eb) {
-                Registry.register(Registries.BLOCK, new Identifier(OpenComputersRewritten.identifier, eb.registryName()), eb);
+                Registry.register(Registries.BLOCK, Identifier.of(OpenComputersRewritten.identifier, eb.registryName()), eb);
             }
             descriptors.put(id, new ItemInfo() {
                 @Override
@@ -89,8 +89,8 @@ public class ItemAPIImplementation implements ItemAPI {
         if (!descriptors.containsKey(id)) {
             var itemInst = switch (instance) {
                 case ExtendedBlock block -> {
-                    Registry.register(Registries.BLOCK, new Identifier(OpenComputersRewritten.identifier, block.registryName()), block);
-                    yield Registry.register(Registries.ITEM, new Identifier(OpenComputersRewritten.identifier, block.registryName()), new ExtendedBlockItem(block, new Item.Settings()));
+                    Registry.register(Registries.BLOCK, Identifier.of(OpenComputersRewritten.identifier, block.registryName()), block);
+                    yield Registry.register(Registries.ITEM, Identifier.of(OpenComputersRewritten.identifier, block.registryName()), new ExtendedBlockItem(block, new Item.Settings()));
                 }
                 default -> null;
             };
@@ -127,7 +127,7 @@ public class ItemAPIImplementation implements ItemAPI {
     public Item registerItem(Item instance, String id) {
         if (!descriptors.containsKey(id)) {
             if (instance instanceof ExtendedItem ei) {
-                Registry.register(Registries.ITEM, new Identifier(OpenComputersRewritten.identifier, ei.registryName()), ei);
+                Registry.register(Registries.ITEM, Identifier.of(OpenComputersRewritten.identifier, ei.registryName()), ei);
             }
             descriptors.put(id, new ItemInfo() {
                 @Override

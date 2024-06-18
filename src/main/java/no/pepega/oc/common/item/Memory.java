@@ -6,7 +6,7 @@ import no.pepega.oc.common.item.util.ExtendedItem;
 public class Memory extends ExtendedItem implements Tiered {
     private final int tier;
 
-    public Memory(Settings settings, int tier) {
+    public Memory(net.minecraft.item.Item.Settings settings, int tier) {
         super(settings);
         this.tier = tier;
     }

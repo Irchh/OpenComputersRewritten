@@ -31,10 +31,10 @@ import java.util.function.Supplier;
 public class ScreenModel extends BaseModel {
     List<Sprite> sprites = new ArrayList<>();
     List<Sprite> spritesFront = new ArrayList<>();
-
+    
     @Nullable
     @Override
-    public BakedModel bake(Baker baker, Function<SpriteIdentifier, Sprite> textureGetter, ModelBakeSettings rotationContainer, Identifier modelId) {
+    public BakedModel bake(Baker baker, Function<SpriteIdentifier, Sprite> textureGetter, ModelBakeSettings rotationContainer) {
         for(int i = 0; i < Textures.screen.Single.size(); ++i) {
             sprites.add(textureGetter.apply(Textures.screen.Single.get(i)));
         }

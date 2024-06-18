@@ -1,8 +1,8 @@
 package no.pepega.oc.common.item.util;
 
-import net.minecraft.client.item.TooltipType;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.text.Text;
 import no.pepega.oc.common.Tier;
 import no.pepega.oc.api.internal.Tiered;
@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Optional;
 
 public class ExtendedItem extends Item {
-    public ExtendedItem(Settings settings) {
+    public ExtendedItem(net.minecraft.item.Item.Settings settings) {
         super(settings);
     }
 

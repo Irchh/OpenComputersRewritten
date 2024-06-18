@@ -9,7 +9,7 @@ import no.pepega.oc.api.internal.Tiered;
 import no.pepega.oc.util.Color;
 
 public class ExtendedBlockItem extends BlockItem {
-    public ExtendedBlockItem(Block block, Settings settings) {
+    public ExtendedBlockItem(Block block, net.minecraft.item.Item.Settings settings) {
         super(block, settings);
     }
 

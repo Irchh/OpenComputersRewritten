@@ -8,6 +8,7 @@ import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
 import no.pepega.oc.api.Driver;
 import no.pepega.oc.api.Machine;
+import no.pepega.oc.api.driver.DriverItem;
 import no.pepega.oc.api.driver.item.MutableProcessor;
 import no.pepega.oc.api.machine.Architecture;
 import no.pepega.oc.util.Tooltip;
